@@ -3,6 +3,10 @@ class InfosController < ApplicationController
   @portfolio_items = Info.all
   end
 
+  def angular
+    @angular_portfolio_items =  Info.angular
+  end
+
   def new
     @portfolio_items = Info.new
   end
@@ -47,7 +51,7 @@ class InfosController < ApplicationController
     @portfolio_items = Info.find(params[:id])
     #Destroy/delte the item
     @portfolio_items.destroy
-    #Redirect 
+    #Redirect
     respond_to do |format|
       format.html { redirect_to infos_url, notice: 'Record was successfully removed.' }
       format.json { head :no_content }

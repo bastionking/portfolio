@@ -38,5 +38,9 @@ class InfosController < ApplicationController
     end
   end
 
+  def show
+      @portfolio_items = Info.find(params[:id])
+  end
+
 
 end

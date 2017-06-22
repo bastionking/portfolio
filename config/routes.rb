@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :infos
+  resources :infos, except: [:show]
 
+  get 'info/:id', to: 'infos#show', as: 'info_show'
 
   get 'about', to: 'pages#about'
 

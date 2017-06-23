@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :infos, except: [:show]
 
+  get 'angular-items', to: 'infos#angular'
+
   get 'info/:id', to: 'infos#show', as: 'info_show'
 
   get 'about', to: 'pages#about'

@@ -3,12 +3,17 @@ class InfosController < ApplicationController
   @portfolio_items = Info.all
   end
 
+  def angular
+    @angular_portfolio_items =  Info.angular
+  end
+
   def new
     @portfolio_items = Info.new
+    3.times{@portfolio_items.technologies.build}
   end
 
   def create
-      @portfolio_items = Info.new(params.require(:info).permit(:title, :subtitle, :body))
+      @portfolio_items = Info.new(params.require(:info).permit(:title, :subtitle, :body, technologies_attributes: [:name]))
 
     respond_to do |format|
       if @portfolio_items.save
@@ -47,7 +52,7 @@ class InfosController < ApplicationController
     @portfolio_items = Info.find(params[:id])
     #Destroy/delte the item
     @portfolio_items.destroy
-    #Redirect 
+    #Redirect
     respond_to do |format|
       format.html { redirect_to infos_url, notice: 'Record was successfully removed.' }
       format.json { head :no_content }

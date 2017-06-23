@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  devise_for :users
   resources :infos, except: [:show]
 
   get 'angular-items', to: 'infos#angular'

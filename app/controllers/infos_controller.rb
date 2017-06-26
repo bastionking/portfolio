@@ -13,7 +13,7 @@ class InfosController < ApplicationController
   end
 
   def create
-      @portfolio_items = Info.new(params.require(:info).permit(:title, :subtitle, :body, technologies_attributes: [:name]))
+      @portfolio_items = Info.new(portfolio_params)
 
     respond_to do |format|
       if @portfolio_items.save
@@ -33,7 +33,7 @@ class InfosController < ApplicationController
   def update
         @portfolio_items = Info.find(params[:id])
     respond_to do |format|
-      if @portfolio_items.update(params.require(:info).permit(:title, :subtitle, :body))
+      if @portfolio_items.update(portfolio_params)
         format.html { redirect_to infos_path, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @portfolio_items }
       else
@@ -58,6 +58,13 @@ class InfosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def portfolio_params
+    params.require(:info).permit(:title, :subtitle, :body, technologies_attributes: [:name])
+  end
+
 
 
 end

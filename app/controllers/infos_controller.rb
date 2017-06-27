@@ -1,4 +1,6 @@
 class InfosController < ApplicationController
+  layout 'info'
+
   def index
   @portfolio_items = Info.all
   end

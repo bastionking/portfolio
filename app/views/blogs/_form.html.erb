@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  
+
 
   <div class="field">
     <%= form.label :title %>
@@ -21,6 +21,14 @@
     <%= form.label :body %>
     <%= form.text_area :body, id: :blog_body %>
   </div>
+
+  <div class="form-group">
+  <%= form.label :topic_id %>
+  <%= form.collection_select(:topic_id, Topic.all, :id, :title,
+                            {include_blank: true
+                            },class: 'form-control'  )%>
+</div>
+
 
   <div class="actions">
     <%= form.submit %>

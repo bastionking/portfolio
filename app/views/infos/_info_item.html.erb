@@ -1,0 +1,9 @@
+<p><%= link_to info_item.title, info_show_path(info_item) %></p>
+
+<p><%= info_item.subtitle %></p>
+
+<p><%= info_item.body %></p>
+
+<%= image_tag info_item.thumb_image unless info_item.thumb_image.nil? %>
+<%= link_to "Edit", edit_info_path(info_item) %>
+<%= link_to 'Delete Portfolio Item', info_path(info_item), method: :delete, data: { confirm: 'Are you sure?' } %>

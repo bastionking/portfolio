@@ -1,4 +1,5 @@
 class InfosController < ApplicationController
+  before_action :set_info , only: [:show, :edit, :update, :destroy]
   layout 'info'
 
   def index
@@ -29,11 +30,9 @@ class InfosController < ApplicationController
   end
 
   def edit
-    @portfolio_items = Info.find(params[:id])
   end
 
   def update
-        @portfolio_items = Info.find(params[:id])
     respond_to do |format|
       if @portfolio_items.update(portfolio_params)
         format.html { redirect_to infos_path, notice: 'Record was successfully updated.' }
@@ -46,12 +45,9 @@ class InfosController < ApplicationController
   end
 
   def show
-      @portfolio_items = Info.find(params[:id])
   end
 
   def destroy
-    #Lookup the item
-    @portfolio_items = Info.find(params[:id])
     #Destroy/delte the item
     @portfolio_items.destroy
     #Redirect
@@ -65,6 +61,10 @@ class InfosController < ApplicationController
 
   def portfolio_params
     params.require(:info).permit(:title, :subtitle, :body, technologies_attributes: [:name])
+  end
+
+  def set_info
+    @portfolio_items = Info.find(params[:id])
   end
 
 

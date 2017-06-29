@@ -1,4 +1,4 @@
 <h1>Portfolio Item</h1>
 
-<%= link_to "Create new item", new_info_path %>
+<%= link_to "Create new item", new_info_path if logged_in?(:site_admin)%>
 <%= render partial: 'info_item', collection: @portfolio_items %>

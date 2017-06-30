@@ -14,7 +14,7 @@
   <body>
 
     <%= render "shared/info_nav" %>
-    <%= render "shared/info_masthead" %>
+    <%= render "shared/info_masthead" unless logged_in?(:site_admin) %>
 
     <%= yield %>
 

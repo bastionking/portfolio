@@ -7,6 +7,13 @@ class InfosController < ApplicationController
   @portfolio_items = Info.by_position
   end
 
+  def sort
+    params[:order].each do |key, value|
+      Info.find(value[:id]).update(position: value[:position])
+    end
+    render nothing: true
+  end
+
   def angular
     @angular_portfolio_items =  Info.angular
   end

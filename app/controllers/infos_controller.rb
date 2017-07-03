@@ -1,10 +1,17 @@
 class InfosController < ApplicationController
   before_action :set_info , only: [:show, :edit, :update, :destroy]
   layout 'info'
-  access all: [:show, :index, :angular], user: {except: [:destroy, :new, :create, :update, :edit]}, site_admin: :all
+  access all: [:show, :index, :angular], user: {except: [:destroy, :new, :create, :update, :edit, :sort]}, site_admin: :all
 
   def index
-  @portfolio_items = Info.all
+  @portfolio_items = Info.by_position
+  end
+
+  def sort
+    params[:order].each do |key, value|
+      Info.find(value[:id]).update(position: value[:position])
+    end
+    render nothing: true
   end
 
   def angular

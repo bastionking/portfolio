@@ -20,7 +20,6 @@ class InfosController < ApplicationController
 
   def new
     @portfolio_items = Info.new
-    3.times{@portfolio_items.technologies.build}
   end
 
   def create
@@ -68,7 +67,7 @@ class InfosController < ApplicationController
   private
 
   def portfolio_params
-    params.require(:info).permit(:title, :subtitle, :body, :main_imange, :thumb_image, technologies_attributes:[:name])
+    params.require(:info).permit(:title, :subtitle, :body, :main_imange, :thumb_image, technologies_attributes:[:id, :name, :_destroy])
   end
 
   def set_info

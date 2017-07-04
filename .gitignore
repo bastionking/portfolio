@@ -19,3 +19,7 @@
 .byebug_history
 
 /config/secret.yml
+
+.env
+
+/lib/social_tool.rb
